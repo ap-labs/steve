@@ -7,13 +7,13 @@
 
     <Appenders>
         <RollingRandomAccessFile name="FILE"
-                                 fileName="${sys:user.home}/logs/steve.log"
+                                 fileName="/var/log/steve/steve.log"
                                  filePattern="${sys:user.home}/logs/steve-%d{yyyy-MM-dd}-%i.log.gz"
                                  immediateFlush="false"
                                  append="true">
             <PatternLayout pattern="${logPattern}"/>
             <Policies>
-                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
             <DefaultRolloverStrategy max="20"/>

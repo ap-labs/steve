@@ -2,18 +2,29 @@
 <Configuration status="WARN">
 
     <Properties>
-        <Property name="logPattern">[%-5p] %d %c (%t) - %m%n</Property>
+        <Property name="logPattern">[%-5p] %d{ISO8601}{Europe/Moscow} %c (%t) - %m%n</Property>
     </Properties>
 
     <Appenders>
         <Console name="CONSOLE" target="SYSTEM_OUT">
             <PatternLayout pattern="${logPattern}"/>
         </Console>
+
+        <RollingRandomAccessFile name="FILE"
+                                 fileName="/var/log/steve/steve.log"
+                                 filePattern="${sys:user.home}/logs/steve-%d{yyyy-MM-dd}-%i.log.gz"
+                                 immediateFlush="false"
+                                 append="true">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
     </Appenders>
 
     <Loggers>
-        <!-- Disable the Jooq logo in logs -->
-        <!-- https://github.com/jOOQ/jOOQ/issues/4019 -->
         <AsyncLogger name="org.jooq.Constants" level="WARN"/>
 
         <AsyncLogger name="org.apache.cxf" level="INFO"/>
@@ -29,6 +40,7 @@
 
         <AsyncRoot level="INFO">
             <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE"/>
         </AsyncRoot>
     </Loggers>
 </Configuration>
