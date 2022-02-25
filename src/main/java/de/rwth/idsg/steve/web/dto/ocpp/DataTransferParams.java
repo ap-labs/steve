@@ -18,10 +18,12 @@
  */
 package de.rwth.idsg.steve.web.dto.ocpp;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 /**
  * @author Sevket Goekay <goekay@dbis.rwth-aachen.de>
@@ -37,4 +39,12 @@ public class DataTransferParams extends MultipleChargePointSelect {
     private String messageId;
 
     private String data;
+
+    @lombok.Data
+    public static class Data {
+
+        private String code;
+        private String eventId;
+        private String timestamp;
+    }
 }
