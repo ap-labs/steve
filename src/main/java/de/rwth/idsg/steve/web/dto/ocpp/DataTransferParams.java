@@ -38,7 +38,7 @@ public class DataTransferParams extends MultipleChargePointSelect {
 
     private String messageId;
 
-    private String data;
+    private Data data;
 
     @lombok.Data
     public static class Data {
@@ -47,4 +47,11 @@ public class DataTransferParams extends MultipleChargePointSelect {
         private String eventId;
         private String timestamp;
     }
+
+    public void setData(Data data) {
+        LATEST_DATA = data;
+        this.data = data;
+    }
+
+    public static Data LATEST_DATA;
 }

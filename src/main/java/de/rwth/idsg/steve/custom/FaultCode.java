@@ -80,4 +80,18 @@ public class FaultCode {
         this.id = id;
         this.description = description;
     }
+
+    public static FaultCode getByID(String id) {
+        try {
+            int codeID = Integer.parseInt(id);
+            return FAULT_CODES.stream()
+                    .filter(i -> i.id == codeID)
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Failed to find corresponding fault code"));
+        } catch (Exception e) {
+            // stub
+        }
+        // return unknown value
+        return FAULT_CODES.get(0);
+    }
 }
