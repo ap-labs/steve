@@ -48,6 +48,10 @@ public class DataTransferParams extends MultipleChargePointSelect {
         private String timestamp;
     }
 
+    public String getData() {
+        return "";
+    }
+
     public void setData(Data data) {
         LATEST_DATA = data;
         this.data = data;
