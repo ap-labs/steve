@@ -22,6 +22,7 @@ import de.rwth.idsg.steve.ocpp.Ocpp15AndAboveTask;
 import de.rwth.idsg.steve.ocpp.OcppCallback;
 import de.rwth.idsg.steve.ocpp.OcppVersion;
 import de.rwth.idsg.steve.web.dto.ocpp.DataTransferParams;
+import de.rwth.idsg.steve.web.dto.ocpp.DataTransferRequest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import ocpp.cp._2012._06.DataTransferResponse;
@@ -59,8 +60,8 @@ public class DataTransferTask extends Ocpp15AndAboveTask<DataTransferParams, Dat
      * Dummy implementation. It must be vendor-specific.
      */
     @Override
-    public ocpp.cp._2012._06.DataTransferRequest getOcpp15Request() {
-        return new ocpp.cp._2012._06.DataTransferRequest()
+    public DataTransferRequest getOcpp15Request() {
+        return new DataTransferRequest()
                 .withData(params.getData())
                 .withMessageId(params.getMessageId())
                 .withVendorId(params.getVendorId());
@@ -70,8 +71,8 @@ public class DataTransferTask extends Ocpp15AndAboveTask<DataTransferParams, Dat
      * Dummy implementation. It must be vendor-specific.
      */
     @Override
-    public ocpp.cp._2015._10.DataTransferRequest getOcpp16Request() {
-        return new ocpp.cp._2015._10.DataTransferRequest()
+    public DataTransferRequest getOcpp16Request() {
+        return new DataTransferRequest()
                 .withData(params.getData())
                 .withMessageId(params.getMessageId())
                 .withVendorId(params.getVendorId());
