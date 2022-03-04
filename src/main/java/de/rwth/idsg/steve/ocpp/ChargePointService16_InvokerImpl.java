@@ -167,7 +167,7 @@ public class ChargePointService16_InvokerImpl implements ChargePointService16_In
     @Override
     public void dataTransfer(ChargePointSelect cp, DataTransferTask task) {
         if (cp.isSoap()) {
-            create(cp).dataTransferAsync(task.getOcpp16Request(), cp.getChargeBoxId(), task.getOcpp16Handler(cp.getChargeBoxId()));
+            create(cp).dataTransferAsync(task.getOcpp16Request().convertToDTR10(), cp.getChargeBoxId(), task.getOcpp16Handler(cp.getChargeBoxId()));
         } else {
             runPipeline(cp, task);
         }

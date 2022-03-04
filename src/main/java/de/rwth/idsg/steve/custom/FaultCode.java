@@ -92,6 +92,6 @@ public class FaultCode {
             // stub
         }
         // return unknown value
-        return FAULT_CODES.get(0);
+        return new FaultCode(0, FAULT_CODES.get(0).description + " (code: " + id + ")");
     }
 }

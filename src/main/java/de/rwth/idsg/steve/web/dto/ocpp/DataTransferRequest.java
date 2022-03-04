@@ -22,6 +22,7 @@ public class DataTransferRequest implements RequestType {
     protected Data data;
 
     public DataTransferRequest() {
+        // stub
     }
 
     public String getVendorId() {
@@ -95,5 +96,29 @@ public class DataTransferRequest implements RequestType {
 
     public String toString() {
         return "DataTransferRequest(vendorId=" + this.getVendorId() + ", messageId=" + this.getMessageId() + ", data=" + this.getData() + ")";
+    }
+
+    public ocpp.cp._2012._06.DataTransferRequest convertToDTR06() {
+        ocpp.cp._2012._06.DataTransferRequest request = new ocpp.cp._2012._06.DataTransferRequest();
+        try {
+            request.setMessageId(this.getMessageId());
+            request.setVendorId(this.getVendorId());
+            request.setData(JsonObjectMapper.INSTANCE.getMapper().writeValueAsString(this.data));
+        } catch (Exception e) {
+            // stub
+        }
+        return request;
+    }
+
+    public ocpp.cp._2015._10.DataTransferRequest convertToDTR10() {
+        ocpp.cp._2015._10.DataTransferRequest request = new ocpp.cp._2015._10.DataTransferRequest();
+        try {
+            request.setMessageId(this.getMessageId());
+            request.setVendorId(this.getVendorId());
+            request.setData(JsonObjectMapper.INSTANCE.getMapper().writeValueAsString(this.data));
+        } catch (Exception e) {
+            // stub
+        }
+        return request;
     }
 }

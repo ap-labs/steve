@@ -145,7 +145,7 @@ public class ChargePointService15_InvokerImpl implements ChargePointService15_In
     @Override
     public void dataTransfer(ChargePointSelect cp, DataTransferTask task) {
         if (cp.isSoap()) {
-            create(cp).dataTransferAsync(task.getOcpp15Request(), cp.getChargeBoxId(), task.getOcpp15Handler(cp.getChargeBoxId()));
+            create(cp).dataTransferAsync(task.getOcpp15Request().convertToDTR06(), cp.getChargeBoxId(), task.getOcpp15Handler(cp.getChargeBoxId()));
         } else {
             runPipeline(cp, task);
         }
