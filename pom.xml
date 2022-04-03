@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.rwth.idsg</groupId>
     <artifactId>steve</artifactId>
@@ -40,6 +40,12 @@
         <jetty.version>9.4.44.v20210927</jetty.version>
         <lombok.version>1.18.22</lombok.version>
         <jackson.version>2.13.1</jackson.version>
+
+        <db.ip>192.168.88.2</db.ip>
+        <db.port>3306</db.port>
+        <db.schema>steve</db.schema>
+        <db.user>steve</db.user>
+        <db.password>steve</db.password>
 
         <!-- In Mysql: schema == database (http://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_schema) -->
         <jdbcUrl>jdbc:mysql://${db.ip}:${db.port}/${db.schema}?useSSL=true&amp;serverTimezone=UTC</jdbcUrl>
@@ -402,7 +408,8 @@
                                 </forcedType>
                                 <forcedType>
                                     <name>BOOLEAN</name>
-                                    <includeExpression>.*\.OCPP_TAG_ACTIVITY\.(IN_TRANSACTION|BLOCKED)</includeExpression>
+                                    <includeExpression>.*\.OCPP_TAG_ACTIVITY\.(IN_TRANSACTION|BLOCKED)
+                                    </includeExpression>
                                 </forcedType>
                                 <forcedType>
                                     <userType>org.joda.time.DateTime</userType>

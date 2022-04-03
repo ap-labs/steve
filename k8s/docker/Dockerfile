@@ -24,4 +24,3 @@ RUN sed -i 's|${db.schema}|${env.DB_DATABASE}|g' pom.xml
 RUN mvn clean package -Pkubernetes -Djdk.tls.client.protocols="TLSv1,TLSv1.1,TLSv1.2"
 
 CMD java -jar target/steve.jar
-
