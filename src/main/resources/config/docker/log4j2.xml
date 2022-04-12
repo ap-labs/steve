@@ -12,7 +12,7 @@
 
         <RollingRandomAccessFile name="FILE"
                                  fileName="/var/log/steve/steve.log"
-                                 filePattern="${sys:user.home}/logs/steve-%d{yyyy-MM-dd}-%i.log.gz"
+                                 filePattern="/var/log/steve/steve-%d{yyyy-MM-dd}-%i.log.gz"
                                  immediateFlush="false"
                                  append="true">
             <PatternLayout pattern="${logPattern}"/>
@@ -37,6 +37,8 @@
         <AsyncLogger name="org.apache.jasper" level="WARN"/>
         <AsyncLogger name="org.apache.tomcat.util" level="WARN"/>
         <AsyncLogger name="jndi" level="WARN"/>
+
+        <AsyncLogger name="de.rwth.idsg.steve.ocpp.ws.pipeline" level="WARN" additivity="false"/>
 
         <AsyncRoot level="INFO">
             <AppenderRef ref="CONSOLE"/>
