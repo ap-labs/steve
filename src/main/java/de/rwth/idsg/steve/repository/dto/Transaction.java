@@ -21,6 +21,7 @@ package de.rwth.idsg.steve.repository.dto;
 import jooq.steve.db.enums.TransactionStopEventActor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.Nullable;
 import org.joda.time.DateTime;
 
@@ -41,4 +42,6 @@ public final class Transaction {
     @Nullable private final String stopReason; // new in OCPP 1.6
     @Nullable private final DateTime stopTimestampDT;
     @Nullable private final TransactionStopEventActor stopEventActor;
+    @Setter
+    @Nullable private String evccid;
 }

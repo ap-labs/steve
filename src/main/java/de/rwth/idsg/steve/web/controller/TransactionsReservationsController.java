@@ -23,9 +23,11 @@ import de.rwth.idsg.steve.repository.OcppTagRepository;
 import de.rwth.idsg.steve.repository.ReservationRepository;
 import de.rwth.idsg.steve.repository.ReservationStatus;
 import de.rwth.idsg.steve.repository.TransactionRepository;
+import de.rwth.idsg.steve.repository.dto.TransactionDetails;
 import de.rwth.idsg.steve.service.TransactionStopService;
 import de.rwth.idsg.steve.web.dto.ReservationQueryForm;
 import de.rwth.idsg.steve.web.dto.TransactionQueryForm;
+import ocpp.cs._2015._10.Measurand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +40,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * One controller for transactions and reservations pages
@@ -90,7 +93,16 @@ public class TransactionsReservationsController {
 
     @RequestMapping(value = TRANSACTIONS_DETAILS_PATH)
     public String getTransactionDetails(@PathVariable("transactionPk") int transactionPk, Model model) {
-        model.addAttribute("details", transactionRepository.getDetails(transactionPk));
+        TransactionDetails details = transactionRepository.getDetails(transactionPk);
+        for (TransactionDetails.MeterValues value : details.getValues()) {
+            if (Objects.equals(Measurand.EVCCID.value(), value.getMeasurand())) {
+                String v = value.getValue();
+                if (v != null && !v.isBlank()) {
+                    details.getTransaction().setEvccid(v);
+                }
+            }
+        }
+        model.addAttribute("details", details);
         return "data-man/transactionDetails";
     }
 

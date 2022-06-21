@@ -38,6 +38,7 @@
             <tr><td>Stop Value</td><td>${details.transaction.stopValue}</td></tr>
             <tr><td>Stop Reason</td><td>${details.transaction.stopReason}</td></tr>
             <tr><td>Stop Event Actor</td><td>${details.transaction.stopEventActor}</td></tr>
+            <tr><td>EVCCID</td><td>${details.transaction.evccid}</td></tr>
         </table>
     </center>
     <br>
